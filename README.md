@@ -2,6 +2,8 @@
 
 A real-time voice-based doctor appointment booking assistant built with **Pipecat**, **ElevenLabs STT & TTS**, **Google Gemini**, **Silero VAD**, **FastAPI**, and **SQLite**, paired with a responsive clinical scheduling dashboard and pop-up phone call interface.
 
+**Live Demo:** https://medcare-voice-appointment-ai.onrender.com *(free-tier Render instance; allow ~30–50s to wake if idle)*
+
 ## Tech Stack
 
 - **Voice Pipeline Framework:** Pipecat (`pipecat-ai` 1.17.0)
