@@ -9,7 +9,7 @@ A real-time voice-based doctor appointment booking assistant built with **Pipeca
 - **Voice Pipeline Framework:** Pipecat (`pipecat-ai` 1.17.0)
 - **Voice Activity Detection (Bonus):** Silero VAD (`SileroVADAnalyzer`) for speech boundary detection and barge-in interruption handling
 - **Speech-to-Text (STT):** ElevenLabs Realtime STT (`ElevenLabsRealtimeSTTService`, model `scribe_v2_realtime`, manual commit driven by Silero VAD)
-- **LLM:** Google Gemini (`GoogleLLMService`, default model `gemini-3.5-flash-lite`, configurable via `GEMINI_MODEL`)
+- **LLM:** Google Gemini (`GoogleLLMService`, default model `gemini-3.6-flash`, configurable via `GEMINI_MODEL`)
 - **Text-to-Speech (TTS):** ElevenLabs WebSocket TTS (`ElevenLabsTTSService`, model `eleven_flash_v2_5`, voice `EXAVITQu4vr4xnSDxMaL` / Sarah)
 - **Backend & Database:** FastAPI, Uvicorn, SQLite (`data/appointments.db`)
 - **Frontend Dashboard:** Responsive HTML, CSS, and Web Audio / WebSocket JavaScript served directly by FastAPI
@@ -31,7 +31,7 @@ ElevenLabsRealtimeSTTService (scribe_v2_realtime)
 LLMUserAggregator (SileroVADAnalyzer)
   │  Commits user turn & triggers interruption on speech start
   ▼
-GoogleLLMService (gemini-3.5-flash-lite)
+GoogleLLMService (gemini-3.6-flash)
   │  Calls registered tools in backend/tools.py:
   │   ├─ check_doctor_availability
   │   ├─ book_appointment
@@ -95,7 +95,7 @@ GEMINI_API_KEY=your_google_gemini_api_key
 ```
 
 Optional overrides:
-- `GEMINI_MODEL` (defaults to `gemini-3.5-flash-lite`)
+- `GEMINI_MODEL` (defaults to `gemini-3.6-flash`)
 - `ELEVENLABS_VOICE_ID` (defaults to `EXAVITQu4vr4xnSDxMaL`)
 
 ### 4. Run the Application (Voice Pipeline + Frontend Dashboard)

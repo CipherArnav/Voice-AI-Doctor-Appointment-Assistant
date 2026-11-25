@@ -52,7 +52,7 @@ from backend.tools import (
     check_doctor_availability,
 )
 
-DEFAULT_GEMINI_MODEL = "gemini-3.5-flash-lite"
+DEFAULT_GEMINI_MODEL = "gemini-3.6-flash"
 # ElevenLabs "Sarah - Mature, Reassuring, Confident" pre-made voice
 DEFAULT_ELEVENLABS_VOICE_ID = "EXAVITQu4vr4xnSDxMaL"
 DEFAULT_SAMPLE_RATE = 16000
