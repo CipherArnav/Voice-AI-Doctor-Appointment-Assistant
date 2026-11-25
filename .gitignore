@@ -1,0 +1,28 @@
+# Environment variables
+.env
+
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Frontend / Node
+node_modules/
+dist/
+build/
+.next/
+
+# Databases & local state
+*.db
+*.sqlite
+*.sqlite3
+
+# OS & editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
