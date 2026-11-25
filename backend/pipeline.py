@@ -19,6 +19,7 @@ from pipecat.audio.vad.vad_analyzer import VADParams
 from pipecat.frames.frames import (
     BotStartedSpeakingFrame,
     BotStoppedSpeakingFrame,
+    ErrorFrame,
     InterimTranscriptionFrame,
     LLMFullResponseStartFrame,
     LLMMessagesAppendFrame,
@@ -51,7 +52,7 @@ from backend.tools import (
     check_doctor_availability,
 )
 
-DEFAULT_GEMINI_MODEL = "gemini-3.6-flash"
+DEFAULT_GEMINI_MODEL = "gemini-3.5-flash-lite"
 # ElevenLabs "Sarah - Mature, Reassuring, Confident" pre-made voice
 DEFAULT_ELEVENLABS_VOICE_ID = "EXAVITQu4vr4xnSDxMaL"
 DEFAULT_SAMPLE_RATE = 16000
@@ -212,6 +213,13 @@ class VoiceEventObserver(BaseObserver):
             await self._set_state("speaking")
         elif isinstance(frame, BotStoppedSpeakingFrame):
             await self._set_state("listening")
+        elif isinstance(frame, ErrorFrame):
+            err_text = str(getattr(frame, "error", "") or "Voice service error")
+            if "429" in err_text or "RESOURCE_EXHAUSTED" in err_text:
+                friendly = "Gemini API rate limit reached. Please wait or switch GEMINI_MODEL."
+            else:
+                friendly = err_text[:180]
+            await self._emit_event({"type": "error", "message": friendly})
 
 
 def register_appointment_tools(
